@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        function computerChoice() {
+            let choice = Math.floor(Math.random() * 3);
+            if (choice == 0) {
+                console.log("Computer choses rock.");
+                return "rock";
+            }
+            if (choice == 1) {
+                console.log("Computer choses paper.");
+                return "paper";
+            }
+            console.log("Computer choses scissors.");
+            return "scissors";
+        }
+
+        function playerChoice() {
+            let choice;
+            while(true) {
+                choice = prompt("Rock, Paper, or Scissors?");
+                if(choice) {  
+                    break;
+                }
+                console.log("Thats not a valid choice!")
+            }
+            return choice;
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            if(playerSelection.toLowerCase() == "rock") {
+                if(computerSelection == "rock") {
+                    return "draw";
+                }
+                else if(computerSelection == "paper") {
+                    return "lose";
+                }
+                else {
+                    return "win";
+                }
+            }
+            if(playerSelection.toLowerCase() == "paper") {
+                if(computerSelection == "rock") {
+                    return "win";
+                }
+                else if(computerSelection == "paper") {
+                    return "draw";
+                }
+                else {
+                    return "lose";
+                }
+            }
+            if(playerSelection.toLowerCase() == "scissors") {
+                if(computerSelection == "rock") {
+                    return "lose";
+                }
+                else if(computerSelection == "paper") {
+                    return "win";
+                }
+                else {
+                    return "draw";
+                }
+            }
+        }
+
+        function game() {
+            let i = 0;
+            let playerScore = 0;
+            let computerScore = 0;
+            while(i < 5) {
+                let round = playRound(playerChoice(), computerChoice());
+                if(round == "win") {
+                    console.log("Round Won!");
+                    playerScore++;
+                }
+                else if(round == "lose") {
+                    console.log("Round Lost!");
+                    computerScore++;
+                }
+                else {
+                    console.log("Round Drawn!");
+                }
+                i++;
+            }
+            if(playerScore > computerScore) {
+                console.log("You Win!");
+            }
+            else if(computerScore > playerScore) {
+                console.log("You Lose!");
+            }
+            else {
+                console.log("Its a Draw!");
+            }
+        }
+    </script>
+</html>
+
